@@ -1,8 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package exchange_challenge;
+
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.util.Scanner;
 
 /**
  *
@@ -10,11 +12,23 @@ package exchange_challenge;
  */
 public class Exchange_challenge {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+       Scanner entrada = new Scanner(System.in);
+       var busqueda = entrada.nextInt();
+       String apiKey = "05b2f1ccd276222c8d20dfea";
+       var direccion = "https://v6.exchangerate-api.com/v6/"+ apiKey + "/latest/" + busqueda;
+        
+         HttpClient client = HttpClient.newHttpClient();
+    HttpRequest request = HttpRequest.newBuilder()
+         .uri(URI.create(direccion))
+         .build();    
+
+    HttpResponse<String> response = client
+     .send(request, HttpResponse.BodyHandlers.ofString()); 
+    
+     String json = response.body();
+        System.out.println(json);
     }
     
 }
