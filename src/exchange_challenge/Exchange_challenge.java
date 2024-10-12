@@ -16,14 +16,65 @@ import java.util.Scanner;
  */
 public class Exchange_challenge {
 
-    public static void main(String[] args) throws IOException, InterruptedException {
-
-        Scanner entrada = new Scanner(System.in);
-        System.out.println("moneda?");
-        var busqueda = entrada.nextLine();
-        var apiKey = "05b2f1ccd276222c8d20dfea";
-        String direccion = "https://v6.exchangerate-api.com/v6/" + apiKey + "/latest/" + busqueda + "/";
+    public static void main(String[] args) throws IOException, InterruptedException {       
         
+                
+        var apiKey = "05b2f1ccd276222c8d20dfea";
+        var dato = 0;
+        String direccion = "https://v6.exchangerate-api.com/v6/" + apiKey + "/latest/" + dato + "/";
+        Scanner entrada = new Scanner(System.in);
+          
+        System.out.println("*******************************************************");
+        System.out.println("Sea bienvenido/a al conversor de moneda");
+        System.out.println("");
+        System.out.println("1 - Dolar => Peso argentino");
+        System.out.println("2 - Peso argentino => Dolar");
+        System.out.println("3 - Dolar => Real brasileño");
+        System.out.println("4 - Real brasileño => Dolar");
+        System.out.println("5 - Dolar => Peso colombiano");
+        System.out.println("6 - Peso colombiano => Dolar");
+        System.out.println("7 - Salir");
+        System.out.println("Elija una opcion valida:");
+        System.out.println("*******************************************************");
+        
+        dato = (int) entrada.nextInt();
+        
+        while(dato != 7){   
+        switch (dato) {
+                case 1 -> {
+                    System.out.println("caso 1");
+                    break;
+                }
+                case 2 -> {
+                    System.out.println("caso 2");
+                    break;
+                }
+                case 3 -> {
+                    System.out.println("caso 3");
+                    break;
+                }
+                case 4 -> {
+                    System.out.println("caso 4");
+                    break;
+                }
+                case 5 -> {
+                    System.out.println("caso 5");
+                    break;
+                }
+                case 6 -> {
+                    System.out.println("caso 6");
+                    break;
+                }
+                case 7 -> {
+                    System.out.println("caso 7");
+                    System.out.println("bye");
+                    entrada.close();
+                    break;
+                }
+                default -> throw new AssertionError();
+            }
+        System.out.println("*******************************************************");
+        }
         
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -41,6 +92,7 @@ public class Exchange_challenge {
                  .create();
         
         System.out.println(gson.toString());
+       
     }
-
+    
 }
