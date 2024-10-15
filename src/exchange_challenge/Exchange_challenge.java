@@ -19,7 +19,7 @@ public class Exchange_challenge {
     public static void main(String[] args) throws IOException, InterruptedException {
 
         var apiKey = "05b2f1ccd276222c8d20dfea";
-        var dato = 0;
+        var dato = "USD";
         String direccion = "https://v6.exchangerate-api.com/v6/" + apiKey + "/latest/" + dato + "/";
         Scanner entrada = new Scanner(System.in);
 
@@ -28,16 +28,28 @@ public class Exchange_challenge {
                 .uri(URI.create(direccion))
                 .build();
 
+        try{
+            
         HttpResponse<String> response = client
                 .send(request, HttpResponse.BodyHandlers.ofString());
 
         String json = response.body();
+//        System.out.println(json);
+
         Gson gson = new GsonBuilder()
                 .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
                 .create();
+        
+        Moneda moneda = gson.fromJson(json, Moneda.class);
+        System.out.println(moneda.getResult());
+        
+        }catch(IOException e){
+            System.out.println(e);
+        };
 
+        
         System.out.println("*******************************************************");
-        System.out.println("Sea bienvenido/a al conversor de moneda");
+        System.out.println("Sea bienvenido/a al conversor de monedas");
         System.out.println("");
         System.out.println("1 - Dolar => Peso argentino");
         System.out.println("2 - Peso argentino => Dolar");
@@ -49,51 +61,51 @@ public class Exchange_challenge {
         System.out.println("Elija una opcion valida:");
         System.out.println("*******************************************************");
 
-        do {
-
-            dato = (int) entrada.nextInt();
-
-            switch (dato) {
-                case 1 -> {
-                    System.out.println("caso 1");
-                    entrada.close();
-                    break;
-                }
-                case 2 -> {
-                    System.out.println("caso 2");
-                    entrada.close();
-                    break;
-                }
-                case 3 -> {
-                    System.out.println("caso 3");
-                    entrada.close();
-                    break;
-                }
-                case 4 -> {
-                    System.out.println("caso 4");
-                    entrada.close();
-                    break;
-                }
-                case 5 -> {
-                    System.out.println("caso 5");
-                    entrada.close();
-                    break;
-                }
-                case 6 -> {
-                    System.out.println("caso 6");
-                    entrada.close();
-                    break;
-                }
-                case 7 -> {
-                    System.out.println("caso 7");
-                    System.out.println("bye");
-                    entrada.close();
-                    break;
-                }
-                default ->
-                    throw new AssertionError();
-            }
-        } while (dato != 7);
+//        do {
+//
+//            dato = (int) entrada.nextInt();
+//
+//            switch (dato) {
+//                case 1 -> {
+//                    System.out.println("caso 1");
+//                    entrada.close();
+//                    break;
+//                }
+//                case 2 -> {
+//                    System.out.println("caso 2");
+//                    entrada.close();
+//                    break;
+//                }
+//                case 3 -> {
+//                    System.out.println("caso 3");
+//                    entrada.close();
+//                    break;
+//                }
+//                case 4 -> {
+//                    System.out.println("caso 4");
+//                    entrada.close();
+//                    break;
+//                }
+//                case 5 -> {
+//                    System.out.println("caso 5");
+//                    entrada.close();
+//                    break;
+//                }
+//                case 6 -> {
+//                    System.out.println("caso 6");
+//                    entrada.close();
+//                    break;
+//                }
+//                case 7 -> {
+//                    System.out.println("caso 7");
+//                    System.out.println("bye");
+//                    entrada.close();
+//                    break;
+//                }
+//                default ->
+//                    throw new AssertionError();
+//            }
+//        } while (dato != 7);
 
     }
 
